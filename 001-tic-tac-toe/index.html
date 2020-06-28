@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-tac-toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="menu">
+        <h1>Tic tac toe</h1>
+        <button onclick="showScreen('select-mode');">Start</button>
+        <button onclick="showScreen('settings')">Settings</button>
+    </div>
+
+    <div id="select-mode">
+        <button>X vs O</button>
+        <button>X vs Computer</button>
+        <button>O vs Computer</button>
+        <button>Back</button>
+    </div>
+
+    <div id="settings">
+        <p>Color schema</p>
+        <select name="" id="">
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+        </select>
+        <button>Back</button>
+    </div>
+
+    <div id="game">
+        <div id="header">
+            <p>Player X</p>
+            <p>Player O</p>
+        </div>
+        <div id="board">
+            <div id="tile-0" class="tile"></div>
+            <div id="tile-1" class="tile"></div>
+            <div id="tile-2" class="tile"></div>
+            <div id="tile-3" class="tile"></div>
+            <div id="tile-4" class="tile"></div>
+            <div id="tile-5" class="tile"></div>
+            <div id="tile-6" class="tile"></div>
+            <div id="tile-7" class="tile"></div>
+            <div id="tile-8" class="tile"></div>
+        </div>
+    </div>
+
+    <div id="results">
+        <p>Winner is X</p>
+        <!-- <p>Winner is O</p>
+        <p>It's a draw</p> -->
+        <button>Play again</button>
+        <button>To menu</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,1 +1,1 @@
-# html-games
+# HTML games
