@@ -78,6 +78,19 @@ function selectMode (numberOfPlayers, playerSymbol) {
   showScreen('game');
 }
 
+
+var tiles = document.getElementsByClassName('tile');
+for (var tile of tiles) {
+  tile.addEventListener('click', makeMove)
+}
+
+function makeMove (event) {
+  var tile = event.target;
+  var tileId = event.target.id;
+  var currentPlayerSymbol = players[currentPlayer].symbol;
+  tile.innerHTML = currentPlayerSymbol;
+}
+
 changeTheme('dark');
 createThemeButtons();
 showScreen('menu');
