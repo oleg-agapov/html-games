@@ -14,18 +14,15 @@
     </div>
 
     <div id="select-mode">
-        <button onclick="showScreen('game');">X vs O</button>
-        <button onclick="showScreen('game');">X vs Computer</button>
-        <button onclick="showScreen('game');">O vs Computer</button>
+        <button onclick="selectMode(2, 'X')">X vs O</button>
+        <button onclick="selectMode(1, 'X')">X vs Computer</button>
+        <button onclick="selectMode(1, 'O')">O vs Computer</button>
         <button onclick="showScreen('menu');">Back</button>
     </div>
 
     <div id="settings">
         <p id="themeChoise">Color theme</p>
-        <div id="theme-buttons-container">
-            <!-- <button onclick="changeTheme('light')">Light</button>
-            <button onclick="changeTheme('dark')">Dark</button> -->
-        </div>
+        <div id="theme-buttons-container"></div>
         <button onclick="showScreen('menu');">Back</button>
     </div>
 

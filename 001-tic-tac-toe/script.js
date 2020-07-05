@@ -24,6 +24,9 @@ var themes = {
   },
 }
 
+players = [];
+currentPlayer = null;
+
 function changeTheme (themeName) {
   var themeValues = themes[themeName];
   for (var screen in themeValues) {
@@ -52,6 +55,28 @@ function showScreen (screenName) {
   el.style.display = 'flex';
 }
 
+function selectMode (numberOfPlayers, playerSymbol) {
+  var secondPlayerSymbol = '';
+  if (playerSymbol === 'X') secondPlayerSymbol = 'O';
+  if (playerSymbol === 'O') secondPlayerSymbol = 'X';
+  if (numberOfPlayers === 1) {
+    players = [
+      { type: 'human', symbol: playerSymbol},
+      { type: 'computer', symbol: secondPlayerSymbol},
+    ];
+  } else {
+    players = [
+      { type: 'human', symbol: playerSymbol},
+      { type: 'human', symbol: secondPlayerSymbol},
+    ];
+  }
+  if (Math.random() > 0.5) {
+    currentPlayer = 0;
+  } else {
+    currentPlayer = 1;
+  }
+  showScreen('game');
+}
 
 changeTheme('dark');
 createThemeButtons();
