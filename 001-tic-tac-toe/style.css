@@ -10,6 +10,8 @@ button {
     padding: 10px 20px;
     cursor: pointer;
     margin-top: 20px;
+    border-radius: 10px;
+    outline: none;
 }
 
 #menu, #select-mode, #settings, #game, #results {
@@ -41,6 +43,21 @@ button {
     padding: 10px;
 }
 
+#themeChoise {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+#setList {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+
+#game p {
+    font-size: 20px;
+    font-weight: 550;
+}
 
 #game #header {
     display: flex;
