@@ -14,19 +14,19 @@
     </div>
 
     <div id="select-mode">
-        <button>X vs O</button>
-        <button>X vs Computer</button>
-        <button>O vs Computer</button>
-        <button>Back</button>
+        <button onclick="showScreen('game');">X vs O</button>
+        <button onclick="showScreen('game');">X vs Computer</button>
+        <button onclick="showScreen('game');">O vs Computer</button>
+        <button onclick="showScreen('menu');">Back</button>
     </div>
 
     <div id="settings">
-        <p>Color schema</p>
-        <select name="" id="">
-            <option value="dark">Dark</option>
-            <option value="light">Light</option>
-        </select>
-        <button>Back</button>
+        <p id="themeChoise">Color theme</p>
+        <div id="setList">
+            <button onclick="lightTheme('menu', 'settings', 'select-mode', 'game', 'results');">Light</button>
+            <button onclick="darkTheme('menu', 'settings', 'select-mode', 'game', 'results');">Dark</button>
+        </div>
+        <button onclick="showScreen('menu');">Back</button>
     </div>
 
     <div id="game">
@@ -45,14 +45,15 @@
             <div id="tile-7" class="tile"></div>
             <div id="tile-8" class="tile"></div>
         </div>
+        <button onclick="showScreen('menu');">Back</button>
     </div>
 
     <div id="results">
         <p>Winner is X</p>
         <!-- <p>Winner is O</p>
         <p>It's a draw</p> -->
-        <button>Play again</button>
-        <button>To menu</button>
+        <button onclick="showScreen('game');">Play again</button>
+        <button onclick="showScreen('menu');">To menu</button>
     </div>
     <script src="script.js"></script>
 </body>
