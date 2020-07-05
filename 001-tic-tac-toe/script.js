@@ -1,5 +1,44 @@
 var screens = ['menu', 'settings', 'select-mode', 'game', 'results'];
 
+var themes = {
+  'Dark': {
+    'menu':        'rgb(155, 55, 55)',
+    'settings':    'rgb(55, 155, 55)',
+    'select-mode': 'rgb(55, 55, 155)',
+    'game':        'rgb(155, 155, 155)',
+    'results':     'rgb(27, 155, 112)',
+  },
+  'Light': {
+    'menu':        'rgb(225, 155, 155)',
+    'settings':    'rgb(155, 255, 155)',
+    'select-mode': 'rgb(155, 155, 255)',
+    'game':        'rgb(255, 255, 255)',
+    'results':     'aquamarine',
+  },
+  'Green': {
+    'menu':        'rgb(155, 255, 155)',
+    'settings':    'rgb(155, 255, 155)',
+    'select-mode': 'rgb(155, 255, 155)',
+    'game':        'rgb(155, 255, 155)',
+    'results':     'rgb(155, 255, 155)',
+  },
+}
+
+function changeTheme (themeName) {
+  var themeValues = themes[themeName];
+  for (var screen in themeValues) {
+    var el = document.getElementById(screen);
+    el.style.backgroundColor = themeValues[screen];
+  }
+}
+
+function createThemeButtons () {
+  var container = document.getElementById('theme-buttons-container');
+  for (var themeName in themes) {
+    container.innerHTML += `<button onclick="changeTheme('${themeName}')">${themeName}</button>`
+  }
+}
+
 function hideAllScreens () {
   for (let i = 0; i < screens.length; i++) {
     var el = document.getElementById(screens[i]);
@@ -13,30 +52,7 @@ function showScreen (screenName) {
   el.style.display = 'flex';
 }
 
+
+changeTheme('dark');
+createThemeButtons();
 showScreen('menu');
-
-function darkTheme (screenName1,screenName2,screenName3,screenName4,screenName5) {
-  var el = document.getElementById(screenName1);
-  el.style.backgroundColor = "rgb(155, 55, 55)"
-  var el = document.getElementById(screenName2);
-  el.style.backgroundColor = "rgb(55, 155, 55)"
-  var el = document.getElementById(screenName3);
-  el.style.backgroundColor = "rgb(55, 55, 155)"
-  var el = document.getElementById(screenName4);
-  el.style.backgroundColor = "rgb(155, 155, 155)"
-  var el = document.getElementById(screenName5);
-  el.style.backgroundColor = "rgb(27, 155, 112)"
-}
-
-function lightTheme (screenName1,screenName2,screenName3,screenName4,screenName5) {
-  var el = document.getElementById(screenName1);
-  el.style.backgroundColor = "rgb(225, 155, 155)"
-  var el = document.getElementById(screenName2);
-  el.style.backgroundColor = "rgb(155, 255, 155)"
-  var el = document.getElementById(screenName3);
-  el.style.backgroundColor = "rgb(155, 155, 255)"
-  var el = document.getElementById(screenName4);
-  el.style.backgroundColor = "rgb(255, 255, 255)"
-  var el = document.getElementById(screenName5);
-  el.style.backgroundColor = "aquamarine"
-}

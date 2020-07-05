@@ -22,9 +22,9 @@
 
     <div id="settings">
         <p id="themeChoise">Color theme</p>
-        <div id="setList">
-            <button onclick="lightTheme('menu', 'settings', 'select-mode', 'game', 'results');">Light</button>
-            <button onclick="darkTheme('menu', 'settings', 'select-mode', 'game', 'results');">Dark</button>
+        <div id="theme-buttons-container">
+            <!-- <button onclick="changeTheme('light')">Light</button>
+            <button onclick="changeTheme('dark')">Dark</button> -->
         </div>
         <button onclick="showScreen('menu');">Back</button>
     </div>
@@ -43,7 +43,7 @@
             <div id="tile-5" class="tile"></div>
             <div id="tile-6" class="tile"></div>
             <div id="tile-7" class="tile"></div>
-            <div id="tile-8" class="tile"></div>
+            <div id="tile-8" onclick="showScreen('results');" class="tile"></div>
         </div>
         <button onclick="showScreen('menu');">Back</button>
     </div>
