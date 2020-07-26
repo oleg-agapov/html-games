@@ -72,21 +72,17 @@ function selectMode (numberOfPlayers, playerSymbol) {
   }
   if (Math.random() > 0.5) {
     currentPlayer = 0;
-    Player_X.classList.add(`currentPlayer`);
   } else {
     currentPlayer = 1;
-    Player_O.classList.add(`currentPlayer`);
   }
   showScreen('game');
+  underlinePlayer(players[currentPlayer].symbol);
 }
-
 
 var tiles = document.getElementsByClassName('tile');
 for (var tile of tiles) {
-  tile.addEventListener('click', makeMove)
+  tile.addEventListener('click', makeMove);
 }
-
-let element = document.getElementById('header');
 
 function makeMove (event) {
   var tile = event.target;
@@ -98,28 +94,25 @@ function makeMove (event) {
   } else {
     currentPlayer = 0;
   }
-  underlinePlayer(currentPlayerSymbol);
-  tile.removeEventListener('click', makeMove)
+  var newCurrentPlayerSymbol = players[currentPlayer].symbol;
+  underlinePlayer(newCurrentPlayerSymbol);
+  tile.removeEventListener('click', makeMove);
 }
 
-const Player_X = document.createElement(`p`);
-Player_X.textContent = `Player X`;
-
-const Player_O = document.createElement(`p`);
-Player_O.textContent = `Player O`;
-
-element.appendChild(Player_X);
-element.appendChild(Player_O);
-
-function underlinePlayer (PlayerSymbol) {
-  if (PlayerSymbol === 0) {
-    Player_X.classList.add(`currentPlayer`);
-    Player_O.classList.remove(`currentPlayer`);}
-  else {
-    Player_O.classList.add(`currentPlayer`);
-    Player_X.classList.remove(`currentPlayer`);}
+function underlinePlayer (currentPlayerSymbol) {
+  const playerX = document.getElementById('player-x');
+  const playerO = document.getElementById('player-o');
+  if (currentPlayerSymbol === 'X') {
+    playerX.classList.add('current-player');
+    playerO.classList.remove('current-player');
+  } else {
+    playerO.classList.add('current-player');
+    playerX.classList.remove('current-player');
   }
+}
+
 
 changeTheme('dark');
 createThemeButtons();
 showScreen('menu');
+selectMode(1, 'X');
