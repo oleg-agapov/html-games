@@ -72,8 +72,10 @@ function selectMode (numberOfPlayers, playerSymbol) {
   }
   if (Math.random() > 0.5) {
     currentPlayer = 0;
+    Player_X.classList.add(`currentPlayer`);
   } else {
     currentPlayer = 1;
+    Player_O.classList.add(`currentPlayer`);
   }
   showScreen('game');
 }
@@ -91,13 +93,12 @@ function makeMove (event) {
   var tileId = event.target.id;
   var currentPlayerSymbol = players[currentPlayer].symbol;
   tile.innerHTML = currentPlayerSymbol;
-  underlinePlayer(currentPlayerSymbol);
   if (currentPlayer === 0) {
     currentPlayer = 1;
-  }
-  else {
+  } else {
     currentPlayer = 0;
   }
+  underlinePlayer(currentPlayerSymbol);
   tile.removeEventListener('click', makeMove)
 }
 
