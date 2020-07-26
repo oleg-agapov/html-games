@@ -76,12 +76,12 @@ function selectMode (numberOfPlayers, playerSymbol) {
     currentPlayer = 1;
   }
   showScreen('game');
+  underlinePlayer(players[currentPlayer].symbol);
 }
-
 
 var tiles = document.getElementsByClassName('tile');
 for (var tile of tiles) {
-  tile.addEventListener('click', makeMove)
+  tile.addEventListener('click', makeMove);
 }
 
 function makeMove (event) {
@@ -89,8 +89,30 @@ function makeMove (event) {
   var tileId = event.target.id;
   var currentPlayerSymbol = players[currentPlayer].symbol;
   tile.innerHTML = currentPlayerSymbol;
+  if (currentPlayer === 0) {
+    currentPlayer = 1;
+  } else {
+    currentPlayer = 0;
+  }
+  var newCurrentPlayerSymbol = players[currentPlayer].symbol;
+  underlinePlayer(newCurrentPlayerSymbol);
+  tile.removeEventListener('click', makeMove);
 }
+
+function underlinePlayer (currentPlayerSymbol) {
+  const playerX = document.getElementById('player-x');
+  const playerO = document.getElementById('player-o');
+  if (currentPlayerSymbol === 'X') {
+    playerX.classList.add('current-player');
+    playerO.classList.remove('current-player');
+  } else {
+    playerO.classList.add('current-player');
+    playerX.classList.remove('current-player');
+  }
+}
+
 
 changeTheme('dark');
 createThemeButtons();
 showScreen('menu');
+selectMode(1, 'X');
