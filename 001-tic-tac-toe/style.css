@@ -96,3 +96,7 @@ button {
 #results {
     background-color: aquamarine;
 }
+
+.currentPlayer {
+    text-decoration: underline;
+}

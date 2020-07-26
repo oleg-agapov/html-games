@@ -84,12 +84,34 @@ for (var tile of tiles) {
   tile.addEventListener('click', makeMove)
 }
 
+let element = document.getElementById('header');
+
 function makeMove (event) {
   var tile = event.target;
   var tileId = event.target.id;
   var currentPlayerSymbol = players[currentPlayer].symbol;
   tile.innerHTML = currentPlayerSymbol;
+  underlinePlayer(currentPlayerSymbol);
+  
 }
+
+const Player_X = document.createElement(`p`);
+Player_X.textContent = `Player X`;
+
+const Player_O = document.createElement(`p`);
+Player_O.textContent = `Player O`;
+
+element.appendChild(Player_X);
+element.appendChild(Player_O);
+
+function underlinePlayer (PlayerSymbol) {
+  if (PlayerSymbol === 0) {
+    Player_X.classList.add(`currentPlayer`);
+    Player_O.classList.remove(`currentPlayer`);}
+  else {
+    Player_O.classList.add(`currentPlayer`);
+    Player_X.classList.remove(`currentPlayer`);}
+  }
 
 changeTheme('dark');
 createThemeButtons();
