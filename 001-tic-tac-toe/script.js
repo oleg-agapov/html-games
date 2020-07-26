@@ -31,7 +31,7 @@ var currentMode = {
   numberOfPlayers: null,
   playerSymbol: null
 }
-
+var winnerMessage = '';
 
 function changeTheme (themeName) {
   var themeValues = themes[themeName];
@@ -95,13 +95,12 @@ function resetBoard () {
     var tile = document.getElementById('tile-' + i);
     tile.innerHTML = '';
   }
+  var tiles = document.getElementsByClassName('tile');
+  for (var tile of tiles) {
+    tile.addEventListener('click', makeMove);
+  }
 }
 
-
-var tiles = document.getElementsByClassName('tile');
-for (var tile of tiles) {
-  tile.addEventListener('click', makeMove);
-}
 
 function makeMove (event) {
   var tile = event.target;
@@ -109,12 +108,13 @@ function makeMove (event) {
   tileId = parseInt(tileId.split('-')[1]);
   var currentPlayerSymbol = players[currentPlayer].symbol;
   tile.innerHTML = currentPlayerSymbol;
+  board[tileId] = currentPlayerSymbol;
+  checkGameEnd(currentPlayer);
   if (currentPlayer === 0) {
     currentPlayer = 1;
   } else {
     currentPlayer = 0;
   }
-  board[tileId] = currentPlayerSymbol;
   var newCurrentPlayerSymbol = players[currentPlayer].symbol;
   underlinePlayer(newCurrentPlayerSymbol);
   tile.removeEventListener('click', makeMove);
@@ -132,6 +132,29 @@ function underlinePlayer (currentPlayerSymbol) {
   }
 }
 
+
+function checkGameEnd (currentPlayer) {
+  if ( board[0] === board[1] && board[1] === board[2] && board[2] !== ''
+    || board[3] === board[4] && board[4] === board[5] && board[5] !== ''
+    || board[6] === board[7] && board[7] === board[8] && board[8] !== ''
+    || board[0] === board[3] && board[3] === board[6] && board[6] !== ''
+    || board[1] === board[4] && board[4] === board[7] && board[7] !== ''
+    || board[2] === board[5] && board[5] === board[8] && board[8] !== ''
+    || board[0] === board[4] && board[4] === board[8] && board[8] !== ''
+    || board[2] === board[4] && board[4] === board[6] && board[6] !== ''
+  ) {
+    winnerMessage = `Player ${players[currentPlayer].symbol} is winner`;
+    showScreen('results');
+    document.getElementById('winner-message').innerHTML = winnerMessage;
+  } else {
+    var emptyTiles = board.filter(function(e) {return e === ""});
+    if (emptyTiles.length === 0) {
+      winnerMessage = `It's a draw`;
+      showScreen('results');
+      document.getElementById('winner-message').innerHTML = winnerMessage;
+    }
+  }
+}
 
 changeTheme('dark');
 createThemeButtons();
