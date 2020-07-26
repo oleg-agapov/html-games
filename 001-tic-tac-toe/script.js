@@ -92,7 +92,13 @@ function makeMove (event) {
   var currentPlayerSymbol = players[currentPlayer].symbol;
   tile.innerHTML = currentPlayerSymbol;
   underlinePlayer(currentPlayerSymbol);
-  
+  if (currentPlayer === 0) {
+    currentPlayer = 1;
+  }
+  else {
+    currentPlayer = 0;
+  }
+  tile.removeEventListener('click', makeMove)
 }
 
 const Player_X = document.createElement(`p`);
