@@ -24,8 +24,14 @@ var themes = {
   },
 }
 
-players = [];
-currentPlayer = null;
+var players = [];
+var currentPlayer = null;
+var board = ['', '', '', '', '', '', '', '', ''];
+var currentMode = {
+  numberOfPlayers: null,
+  playerSymbol: null
+}
+
 
 function changeTheme (themeName) {
   var themeValues = themes[themeName];
@@ -56,6 +62,8 @@ function showScreen (screenName) {
 }
 
 function selectMode (numberOfPlayers, playerSymbol) {
+  currentMode["numberOfPlayers"] = numberOfPlayers;
+  currentMode["playerSymbol"] = playerSymbol;
   var secondPlayerSymbol = '';
   if (playerSymbol === 'X') secondPlayerSymbol = 'O';
   if (playerSymbol === 'O') secondPlayerSymbol = 'X';
@@ -77,7 +85,18 @@ function selectMode (numberOfPlayers, playerSymbol) {
   }
   showScreen('game');
   underlinePlayer(players[currentPlayer].symbol);
+  resetBoard();
 }
+
+
+function resetBoard () {
+  for (let i = 0; i < 9; i++) {
+    board[i] = '';
+    var tile = document.getElementById('tile-' + i);
+    tile.innerHTML = '';
+  }
+}
+
 
 var tiles = document.getElementsByClassName('tile');
 for (var tile of tiles) {
@@ -87,6 +106,7 @@ for (var tile of tiles) {
 function makeMove (event) {
   var tile = event.target;
   var tileId = event.target.id;
+  tileId = parseInt(tileId.split('-')[1]);
   var currentPlayerSymbol = players[currentPlayer].symbol;
   tile.innerHTML = currentPlayerSymbol;
   if (currentPlayer === 0) {
@@ -94,6 +114,7 @@ function makeMove (event) {
   } else {
     currentPlayer = 0;
   }
+  board[tileId] = currentPlayerSymbol;
   var newCurrentPlayerSymbol = players[currentPlayer].symbol;
   underlinePlayer(newCurrentPlayerSymbol);
   tile.removeEventListener('click', makeMove);
@@ -115,4 +136,5 @@ function underlinePlayer (currentPlayerSymbol) {
 changeTheme('dark');
 createThemeButtons();
 showScreen('menu');
-selectMode(1, 'X');
+// selectMode(2, 'X');
+// showScreen('results');
